@@ -1,34 +1,35 @@
-const { Command } = require("commander");
-const program = new Command();
-program
-  .option("-a, --action <type>", "choose action")
-  .option("-i, --id <type>", "user id")
-  .option("-n, --name <type>", "user name")
-  .option("-e, --email <type>", "user email")
-  .option("-p, --phone <type>", "user phone");
+// const { Command } = require("commander");
+// const program = new Command();
+// program
+//   .option("-a, --action <type>", "choose action")
+//   .option("-i, --id <type>", "user id")
+//   .option("-n, --name <type>", "user name")
+//   .option("-e, --email <type>", "user email")
+//   .option("-p, --phone <type>", "user phone");
 
-program.parse(process.argv);
+// program.parse(process.argv);
 
-const argv = program.opts();
+// const argv = program.opts();
 
-const contactService = require ("./contacts.js");
+const contactService = require ("./contacts");
+console.log(contactService);
 
-const invokeAction = async ({ action, contactId, name, email, phone }) => {
+const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case "list":
         const listContacts = await contactService.listContacts();
         return console.log(listContacts);
       
     case "getContactById":
-      const oneContact = await contactService.getContactById(contactId);
+      const oneContact = await contactService.getContactById(id);
       return console.log(oneContact);
 
     case "removeContact":
-      const deleteContact = await contactService.removeContact(contactId);
+      const deleteContact = await contactService.removeContact(id);
       return console.log(deleteContact);
 
     case "addContact":
-      const newContact = await contactServic.addContact(contactId, {name, email, phone});
+      const newContact = await contactServic.addContact(id, {name, email, phone});
       return console.log(newContact);
 
     default:
@@ -36,5 +37,5 @@ const invokeAction = async ({ action, contactId, name, email, phone }) => {
   }
 }
 
-invokeAction(argv);
+invokeAction({action: "list"});
 
