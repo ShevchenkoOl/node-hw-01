@@ -31,19 +31,6 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-//invokeAction({ action: "list" });
-// invokeAction({ action: "getContactById", id: "e6ywwRe4jcqxXfCZOj_1e" });
-// invokeAction({
-//   action: "addContact",
-//   name: "Eliska Novakova",
-//   email: "resenmf@gmail.com",
-//   phone: "(420) 775-9887",
-// });
-// invokeAction({
-//   action: "removeContact",
-//   id: "KFitb52qzvhx6n_-MUMFH"
-// });
-
 program
   .option("-a, --action <type>")
   .option("-i, --id <type>")
